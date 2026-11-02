@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RD Salão</title>
+<style>
+:root{--bg:#faf6f8;--card:#fff;--tx:#241a22;--mu:#7a6a76;--bd:#e8dde4;--ac:#c2478f;--ac2:#fbe3f1;--on:#fff;--ok:#2e8b57;--bad:#d1435b;--wn:#b87a05;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15101a;--card:#1f1827;--tx:#f3eaf1;--mu:#a493a0;--bd:#33283b;--ac:#e08ec6;--ac2:#3a2234;--on:#20101a;--ok:#5fcf8f;--bad:#ff7a90;--wn:#f0b84a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15101a;--card:#1f1827;--tx:#f3eaf1;--mu:#a493a0;--bd:#33283b;--ac:#e08ec6;--ac2:#3a2234;--on:#20101a;--ok:#5fcf8f;--bad:#ff7a90;--wn:#f0b84a;color-scheme:dark}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}
+h1{margin:0;font-size:22px}h2{font-size:17px;margin:18px 0 8px}h3{font-size:14px;margin:18px 0 6px}
+nav{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--bd);margin:10px 0}
+nav button{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:10px 12px;color:var(--mu);white-space:nowrap}
+nav .on{color:var(--tx);border-color:var(--ac);font-weight:600}
+button,.btn{font:inherit;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:9px 14px;cursor:pointer;text-decoration:none;display:inline-block}
+.pri{background:var(--ac);border-color:var(--ac);color:var(--on);font-weight:600;width:100%;margin:10px 0}
+.ghost{background:none;color:var(--mu)}.mini{padding:2px 10px}
+input,select{width:100%;font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:8px}
+label{display:block;color:var(--mu);font-size:12px;margin:8px 0 0}label input,label select{margin-top:3px}
+.chk{display:flex;gap:8px;align-items:center}.chk input{width:auto;margin:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.tile{text-align:left;position:relative;padding:12px}.tile span{display:block;color:var(--mu);margin-top:4px}
+.tile i{position:absolute;top:6px;right:8px;font-style:normal;background:var(--ac);color:var(--on);border-radius:99px;min-width:20px;text-align:center;font-size:12px}
+.tile i:empty{display:none}.sel{background:var(--ac2);border-color:var(--ac)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end}.row4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.ln,.tot{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--bd)}.tot{border:0}.tot b{font-size:24px}
+.item{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin:6px 0;flex-wrap:wrap}
+.acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.qty{min-width:24px;text-align:center}
+.tag{font-size:11px;border:1px solid var(--bd);border-radius:99px;padding:1px 8px;margin-left:6px;color:var(--mu)}
+.ok{color:var(--ok)}.wn{color:var(--wn)}.bad{color:var(--bad)}.pos{color:var(--ok)}.neg{color:var(--bad)}
+.tag.ok,.tag.wn,.tag.bad{border-color:currentColor}.mu{color:var(--mu)}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:660px}
+th{font-size:12px;color:var(--mu);text-align:left;padding:4px}td{padding:3px;border-top:1px solid var(--bd)}td input{padding:6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}.kpi span{color:var(--mu);font-size:12px;display:block}.kpi b{font-size:18px}
+.bars{display:flex;gap:6px;height:120px}.bc{flex:1;display:flex;flex-direction:column;text-align:center}
+.bp{flex:1;display:flex;align-items:flex-end;gap:2px}.bp i{flex:1;background:var(--ac);border-radius:3px 3px 0 0}.bp i.g{background:var(--ok)}.bp i.n{background:var(--bad)}
+.rk{height:6px;background:var(--ac);border-radius:3px;margin-top:3px}
+.ov{position:fixed;inset:0;background:#000a;display:flex;align-items:center;justify-content:center;padding:16px;z-index:9}.ov[hidden]{display:none}
+.box{background:#fff;color:#111;border-radius:12px;padding:24px;width:100%;max-width:420px;max-height:90vh;overflow:auto}
+.box .mu{color:#666}.box .ln,.box .tot{border-color:#ddd}.box button,.box .btn{color:#111;background:#f3f3f3;border-color:#ddd}.box .pri{color:#fff;background:#c2478f;border-color:#c2478f}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:99px;display:none;z-index:10}
+@media print{body>*:not(#rec){display:none!important}#rec{position:static;background:none;padding:0}.noprint{display:none!important}}
+</style></head><body>
+<div class="w"><header><div><h1>RD Salão</h1><span class="mu">@rafaeldinizpro</span></div><span class="mu" id="hd"></span></header>
+<nav id="tabs"></nav><main id="main"></main></div>
+<div id="rec" class="ov" hidden><div class="box"><div id="paper"></div>
+<div class="acts noprint" style="margin-top:16px"><button class="pri" style="width:auto;margin:0" onclick="window.print()">Imprimir / salvar PDF</button><a id="wal" class="btn" target="_blank" rel="noopener">WhatsApp</a><button onclick="$('rec').hidden=true">Fechar</button></div></div></div>
+<div id="toast"></div>
+<script>
+const K='rdsalao.v1',$=i=>document.getElementById(i),v=i=>$(i).value;
+const D={sv:[
+ {id:'s1',n:'Escova',p:60,c:6.44,m:25,d:45},{id:'s2',n:'Progressiva',p:250,c:23.7,m:90,d:180},
+ {id:'s3',n:'Corte',p:70,c:4.06,m:30,d:45},{id:'s4',n:'Corte masculino',p:45,c:.9,m:18,d:30},
+ {id:'s5',n:'Loiro',p:450,c:17.89,m:150,d:240},{id:'s6',n:'Tintura',p:150,c:25.98,m:60,d:120},
+ {id:'s7',n:'Maquiagem',p:150,c:12.5,m:60,d:60},{id:'s8',n:'Hidratação',p:90,c:7.41,m:35,d:60}],
+ vis:[],ag:[],dp:[],st:[
+ {id:'p1',n:'Shampoo profissional',q:4,min:2,cu:45},{id:'p2',n:'Condicionador',q:3,min:2,cu:48},
+ {id:'p3',n:'Máscara de hidratação',q:3,min:1,cu:85},{id:'p4',n:'Tintura',q:20,min:8,cu:22},
+ {id:'p5',n:'Pó descolorante',q:3,min:1,cu:70},{id:'p6',n:'Oxidante',q:4,min:2,cu:25}]};
+let S;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}S=S||D;
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const R=n=>(+n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const fd=d=>d?d.split('-').reverse().join('/'):'';
+const wnum=n=>{const d=String(n||'').replace(/\D/g,'');return d?(d.length<=11?'55'+d:d):''};
+const tm=h=>{const[a,b]=h.split(':');return +a*60+ +b};
+const hm=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+const dur=a=>(S.sv.find(s=>s.id==a.sv)||{d:60}).d;
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',2200)}
+let tab='at',cart={},fromAg=null,pre={},RL=[],mo=today().slice(0,7);
+const TABS=[['at','Atendimento'],['ag','Agenda'],['re','Retornos'],['sv','Serviços'],['es','Estoque'],['dp','Despesas'],['rs','Resumo']];
+const go=t=>{tab=t;render()};
+function render(){
+ $('hd').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+ $('tabs').innerHTML=TABS.map(([k,n])=>`<button class="${k==tab?'on':''}" onclick="go('${k}')">${n}</button>`).join('');
+ $('main').innerHTML=V[tab]();pre={};
+ if(tab=='at')drawCart();
+}
+const V={
+at(){return `<div class="grid2"><section><h2>Serviços</h2><p class="mu">Toque para somar. Preços editáveis na aba Serviços.</p><div class="tiles">${S.sv.map(s=>`<button class="tile" id="t_${s.id}" onclick="add('${s.id}')"><b>${E(s.n)}</b><span>${R(s.p)}</span><i id="b_${s.id}"></i></button>`).join('')}</div></section>
+<section class="card"><h2 style="margin-top:0">Atendimento de hoje</h2><div id="cart"></div>
+<label>Cliente<input id="cl" value="${E(pre.cl)}"></label><label>WhatsApp<input id="wa" inputmode="tel" placeholder="(17) 99999-9999" value="${E(pre.wa)}"></label>
+<div class="row"><label>Data<input id="dt" type="date" value="${today()}"></label><label>Chamar de novo em<input id="ret" type="date"></label></div>
+<label>Pagamento<select id="pay">${['Pix','Dinheiro','Cartão débito','Cartão crédito'].map(x=>`<option>${x}</option>`).join('')}</select></label>
+<button class="pri" onclick="fin(1)">Salvar e gerar PDF</button><div class="acts"><button onclick="fin(0)">Só salvar</button><button class="ghost" onclick="cart={};render()">Limpar</button></div></section></div>`},
+ag(){const t=today(),L=[...S.ag].sort((a,b)=>(a.dt+a.h).localeCompare(b.dt+b.h));
+ const up=L.filter(x=>x.dt>=t),pa=L.filter(x=>x.dt<t).reverse().slice(0,15);
+ return `<section class="card"><h2 style="margin-top:0">Novo agendamento</h2><div class="row4"><label>Data<input id="adt" type="date" value="${t}"></label><label>Hora<input id="ah" type="time" value="09:00"></label>
+<label>Cliente<input id="acl" value="${E(pre.cl)}"></label><label>WhatsApp<input id="awa" inputmode="tel" value="${E(pre.wa)}"></label>
+<label>Serviço<select id="asv">${S.sv.map(s=>`<option value="${s.id}">${E(s.n)}</option>`).join('')}</select></label></div><button class="pri" onclick="addAg()">Agendar</button></section>
+<h2>Próximos</h2>${up.map(agRow).join('')||'<p class="mu">Nenhum agendamento.</p>'}<h2>Anteriores</h2>${pa.map(agRow).join('')||'<p class="mu">Nada por aqui.</p>'}`},
+re(){const m={};[...S.vis].sort((a,b)=>a.dt.localeCompare(b.dt)).forEach(x=>{m[(x.wa||x.cl).toLowerCase()]=x});
+ RL=Object.values(m).filter(x=>x.ret).sort((a,b)=>a.ret.localeCompare(b.ret));const t=today();
+ return `<h2>Retornos</h2>`+(RL.length?RL.map((x,i)=>{const d=Math.round((new Date(x.ret)-new Date(t))/864e5),w=wnum(x.wa);
+ return `<div class="item"><div><b>${E(x.cl)}</b><span class="tag ${d<0?'bad':d<=7?'wn':''}">${d<0?'atrasado '+(-d)+' d':d==0?'hoje':'em '+d+' d'}</span><br><span class="mu">Retorno ${fd(x.ret)} · último: ${x.it.map(j=>E(j.n)).join(', ')}</span></div>
+<div class="acts">${w?`<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${w}?text=${encodeURIComponent('Olá '+x.cl+'! Está na hora de voltar ao RD Salão. Vamos agendar?')}">WhatsApp</a>`:''}<button onclick="pre={cl:RL[${i}].cl,wa:RL[${i}].wa};go('ag')">Agendar</button></div></div>`}).join(''):'<p class="mu">Quando você preencher “Chamar de novo em” num atendimento, o cliente aparece aqui.</p>')},
+sv(){return `<h2>Serviços e lucro</h2><p class="mu">Valores por atendimento. Lucro = preço − produtos − mão de obra.</p><div class="scroll"><table><tr><th>Serviço</th><th>Preço</th><th>Produtos</th><th>Mão de obra</th><th>Min</th><th>Lucro</th><th>Margem</th><th></th></tr>${S.sv.map(s=>{const l=s.p-s.c-s.m;
+ return `<tr><td><input value="${E(s.n)}" onchange="ed('${s.id}','n',this.value)"></td>${['p','c','m','d'].map(k=>`<td><input type="number" step="0.01" min="0" value="${s[k]}" onchange="ed('${s.id}','${k}',this.value)"></td>`).join('')}<td class="${l<0?'neg':'pos'}">${R(l)}</td><td>${s.p?Math.round(l/s.p*100):0}%</td><td><button class="ghost" onclick="dsv('${s.id}')">✕</button></td></tr>`}).join('')}</table></div><p><button onclick="S.sv.push({id:uid(),n:'Novo serviço',p:0,c:0,m:0,d:60});save();render()">+ Novo serviço</button></p>`},
+es(){const val=S.st.reduce((a,x)=>a+x.q*x.cu,0);
+ return `<section class="card"><h2 style="margin-top:0">Novo produto</h2><div class="row4"><label>Produto<input id="en"></label><label>Qtd (embalagens)<input id="eq" type="number" value="0"></label><label>Mínimo<input id="em" type="number" value="1"></label><label>Custo da embalagem (R$)<input id="ec" type="number" step="0.01"></label></div><button class="pri" onclick="addSt()">Adicionar</button></section>
+<h2>Estoque · ${R(val)} parados</h2>`+S.st.map(x=>{const s=x.q<=0?['SEM ESTOQUE','bad']:x.q<=x.min?['REPOR','wn']:['OK','ok'];
+ return `<div class="item"><div><b>${E(x.n)}</b><span class="tag ${s[1]}">${s[0]}</span><br><span class="mu">mín. ${x.min} · ${R(x.cu)} por emb. · ${R(x.q*x.cu)}</span></div><div class="acts"><button class="mini" onclick="qt('${x.id}',-1)">−</button><b class="qty">${x.q}</b><button class="mini" onclick="qt('${x.id}',1)">+</button><button class="ghost" onclick="S.st=S.st.filter(z=>z.id!='${x.id}');save();render()">✕</button></div></div>`}).join('')},
+dp(){const L=[...S.dp].sort((a,b)=>b.dt.localeCompare(a.dt));
+ return `<section class="card"><h2 style="margin-top:0">Nova despesa</h2><div class="row4"><label>Data<input id="ddt" type="date" value="${today()}"></label><label>Descrição<input id="dds"></label><label>Tipo<select id="dtp"><option>Fixa</option><option>Variável</option></select></label><label>Valor (R$)<input id="dv" type="number" step="0.01"></label></div>
+<label class="chk"><input id="drc" type="checkbox"> Repetir todo mês (aluguel, energia…)</label><button class="pri" onclick="addDp()">Adicionar</button></section><h2>Despesas</h2>`+
+ (L.map(x=>`<div class="item"><div><b>${E(x.ds)}</b><span class="tag">${x.tp}${x.rec?' · mensal':''}</span><br><span class="mu">${fd(x.dt)}</span></div><div class="acts"><b>${R(x.v)}</b><button class="ghost" onclick="S.dp=S.dp.filter(z=>z.id!='${x.id}');save();render()">✕</button></div></div>`).join('')||'<p class="mu">Nenhuma despesa.</p>')+`<p class="mu">Não lance compra de produtos aqui: o custo deles já entra em cada serviço.</p>`},
+rs(){const s=mstat(mo),a={};s.V.forEach(x=>x.it.forEach(i=>{const z=a[i.n]=a[i.n]||{q:0,r:0,l:0};z.q+=i.q;z.r+=i.p*i.q;z.l+=(i.p-i.c-i.m)*i.q}));
+ const rk=Object.entries(a).sort((p,q)=>q[1].l-p[1].l),mx=Math.max(1,...rk.map(z=>Math.abs(z[1].l)));
+ const y=mo.slice(0,4),ys=Array.from({length:12},(_,i)=>mstat(y+'-'+String(i+1).padStart(2,'0'))),my=Math.max(1,...ys.map(z=>Math.max(z.r,Math.abs(z.ll))));
+ const pv=S.ag.filter(x=>x.dt.slice(0,7)==mo&&x.st=='Agendado').reduce((t,x)=>t+((S.sv.find(z=>z.id==x.sv)||{}).p||0),0);
+ const k=(l,t,c)=>`<div class="kpi"><span>${l}</span><b class="${c||''}">${t}</b></div>`;
+ return `<div class="row"><h2>Resumo</h2><label>Mês<input type="month" value="${mo}" onchange="mo=this.value||mo;render()"></label></div>
+<div class="kpis">${k('Receita',R(s.r))}${k('Atendimentos',s.V.length)}${k('Ticket médio',R(s.V.length?s.r/s.V.length:0))}${k('(−) Produtos',R(s.c))}${k('(−) Mão de obra',R(s.o))}${k('Lucro bruto',R(s.lb),s.lb<0?'neg':'pos')}${k('(−) Despesas fixas',R(s.f))}${k('(−) Despesas variáveis',R(s.vr))}${k('LUCRO LÍQUIDO',R(s.ll)+' · '+(s.r?Math.round(s.ll/s.r*100):0)+'%',s.ll<0?'neg':'pos')}${k('Previsto na agenda',R(pv))}</div>
+<h3>Serviços do mês por lucro</h3>${rk.map(z=>`<div style="margin:6px 0"><div class="ln" style="border:0;padding:0"><span>${E(z[0])} · ${z[1].q}×</span><span>${R(z[1].r)} · lucro ${R(z[1].l)}</span></div><div class="rk" style="width:${Math.max(2,Math.abs(z[1].l)/mx*100)}%"></div></div>`).join('')||'<p class="mu">Sem atendimentos neste mês.</p>'}
+<h3>${y}: receita (rosa) e lucro líquido (verde/vermelho)</h3><div class="bars">${ys.map((z,i)=>`<div class="bc" title="${R(z.r)} / ${R(z.ll)}"><div class="bp"><i style="height:${z.r/my*100}%"></i><i class="${z.ll<0?'n':'g'}" style="height:${Math.abs(z.ll)/my*100}%"></i></div><small>${'JFMAMJJASOND'[i]}</small></div>`).join('')}</div>
+<p class="mu">Os dados ficam salvos neste navegador, neste aparelho.</p>`}};
+function items(){return Object.entries(cart).map(([id,q])=>({s:S.sv.find(x=>x.id==id),q})).filter(x=>x.s)}
+function add(id){cart[id]=(cart[id]||0)+1;drawCart()}
+function rem(id){if(--cart[id]<=0)delete cart[id];drawCart()}
+function drawCart(){const it=items();
+ S.sv.forEach(s=>{const b=$('b_'+s.id);if(b){b.textContent=cart[s.id]||'';$('t_'+s.id).classList.toggle('sel',!!cart[s.id])}});
+ const tot=it.reduce((a,x)=>a+x.s.p*x.q,0),lu=it.reduce((a,x)=>a+(x.s.p-x.s.c-x.s.m)*x.q,0);
+ $('cart').innerHTML=(it.length?it.map(x=>`<div class="ln"><span>${x.q}× ${E(x.s.n)}</span><span>${R(x.s.p*x.q)} <button class="mini" onclick="rem('${x.s.id}')">−</button></span></div>`).join(''):'<p class="mu">Toque nos serviços para somar.</p>')+`<div class="tot"><span>Total</span><b>${R(tot)}</b></div>`+(it.length?`<p class="mu">Lucro estimado: ${R(lu)}</p>`:'')}
+function fin(pdf){const it=items();if(!it.length)return toast('Escolha ao menos um serviço');
+ const x={id:uid(),dt:v('dt')||today(),cl:v('cl').trim()||'Cliente',wa:v('wa').trim(),ret:v('ret'),pay:v('pay'),it:it.map(i=>({n:i.s.n,q:i.q,p:i.s.p,c:i.s.c,m:i.s.m}))};
+ const sm=f=>x.it.reduce((a,i)=>a+f(i)*i.q,0);x.tot=sm(i=>i.p);x.cost=sm(i=>i.c);x.mo=sm(i=>i.m);
+ S.vis.push(x);if(fromAg){const g=S.ag.find(z=>z.id==fromAg);if(g)g.st='Concluído';fromAg=null}
+ cart={};save();toast('Atendimento salvo');render();if(pdf)receipt(x)}
+function receipt(x){
+ $('paper').innerHTML=`<h2 style="margin:0">RD Salão</h2><p class="mu" style="margin:0 0 10px">@rafaeldinizpro</p><p>Atendimento de ${E(x.cl)} · ${fd(x.dt)}</p>${x.it.map(i=>`<div class="ln"><span>${i.q}× ${E(i.n)}</span><span>${R(i.p*i.q)}</span></div>`).join('')}<div class="tot"><span>Total</span><b>${R(x.tot)}</b></div><p class="mu">Pagamento: ${E(x.pay)}</p>${x.ret?`<p>Seu próximo retorno: ${fd(x.ret)}</p>`:''}<p>Obrigado pela preferência!</p>`;
+ const w=wnum(x.wa);$('wal').style.display=w?'':'none';
+ $('wal').href=w?`https://wa.me/${w}?text=`+encodeURIComponent(`Olá ${x.cl}! Seu atendimento no RD Salão: ${x.it.map(i=>i.q+'x '+i.n).join(', ')}. Total ${R(x.tot)}.`+(x.ret?` Próximo retorno: ${fd(x.ret)}.`:'')+' Obrigado pela preferência!'):'#';
+ $('rec').hidden=false}
+function agRow(x){const s=S.sv.find(z=>z.id==x.sv),e=tm(x.h)+dur(x);
+ const c=x.st!='Cancelado'&&S.ag.some(o=>o.id!=x.id&&o.dt==x.dt&&o.st!='Cancelado'&&tm(o.h)<e&&tm(x.h)<tm(o.h)+dur(o));
+ return `<div class="item"><div><b>${fd(x.dt)} · ${x.h}–${hm(e)}</b>${c?'<span class="tag bad">CONFLITO</span>':''}<span class="tag ${x.st=='Concluído'?'ok':x.st=='Agendado'?'wn':''}">${x.st}</span><br>${E(x.cl)} · ${s?E(s.n)+' · '+R(s.p):'—'}</div>
+<div class="acts">${x.st=='Agendado'?`<button onclick="atend('${x.id}')">Atender</button><button class="ghost" onclick="stAg('${x.id}','Cancelado')">Cancelar</button>`:''}<button class="ghost" onclick="S.ag=S.ag.filter(z=>z.id!='${x.id}');save();render()">✕</button></div></div>`}
+function addAg(){if(!v('acl').trim()||!v('adt')||!v('ah'))return toast('Preencha data, hora e cliente');
+ S.ag.push({id:uid(),dt:v('adt'),h:v('ah'),cl:v('acl').trim(),wa:v('awa').trim(),sv:v('asv'),st:'Agendado'});save();toast('Agendado');render()}
+function stAg(id,st){S.ag.find(z=>z.id==id).st=st;save();render()}
+function atend(id){const x=S.ag.find(z=>z.id==id);cart={[x.sv]:1};pre={cl:x.cl,wa:x.wa};fromAg=id;go('at')}
+function ed(id,k,val){const s=S.sv.find(z=>z.id==id);s[k]=k=='n'?val:(+val||0);save();render()}
+function dsv(id){S.sv=S.sv.filter(z=>z.id!=id);delete cart[id];save();render()}
+function addSt(){if(!v('en').trim())return toast('Informe o produto');S.st.push({id:uid(),n:v('en').trim(),q:+v('eq')||0,min:+v('em')||0,cu:+v('ec')||0});save();render()}
+function qt(id,d){const x=S.st.find(z=>z.id==id);x.q=Math.max(0,x.q+d);save();render()}
+function addDp(){if(!v('dds').trim()||!(+v('dv')>0))return toast('Informe descrição e valor');
+ S.dp.push({id:uid(),dt:v('ddt')||today(),ds:v('dds').trim(),tp:v('dtp'),v:+v('dv'),rec:$('drc').checked});save();render()}
+function dpm(m,tp){return S.dp.filter(x=>x.tp==tp&&(x.rec?x.dt.slice(0,7)<=m:x.dt.slice(0,7)==m)).reduce((a,x)=>a+x.v,0)}
+function mstat(m){const V=S.vis.filter(x=>x.dt.slice(0,7)==m),sm=f=>V.reduce((a,x)=>a+x[f],0),r=sm('tot'),c=sm('cost'),o=sm('mo'),f=dpm(m,'Fixa'),vr=dpm(m,'Variável');
+ return {V,r,c,o,f,vr,lb:r-c-o,ll:r-c-o-f-vr}}
+render();
+</script></body></html>
